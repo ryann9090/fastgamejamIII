@@ -18,7 +18,7 @@ public abstract class HabilidadeBase : MonoBehaviour
     // Método para desbloquear a habilidade
     public void Desbloquear()
     {
-        // if (!desbloqueada)
+        if (!desbloqueada)
         {
             desbloqueada = true;
             Debug.Log($"Habilidade desbloqueada: {GetType().Name}");
@@ -28,24 +28,25 @@ public abstract class HabilidadeBase : MonoBehaviour
     // Método para ativar manualmente a habilidade
     public void Ativar()
     {
-        // if (ativa) return;
-        Ciclo();
+        if (!desbloqueada || ativa || emCooldown) return;
+        StartCoroutine(Ciclo());
+
     }
 
     // Ciclo completo da habilidade (ativa -> duração -> cooldown)
-    private void Ciclo()
+    private IEnumerator Ciclo()
     {
         ativa = true;
         Debug.Log($"{GetType().Name} ativada!");
         ExecutarEfeito();
 
-        // yield return new WaitForSeconds(buffDuration);
+        yield return new WaitForSeconds(buffDuration);
 
         ativa = false;
         Debug.Log($"{GetType().Name} desativada!");
 
         emCooldown = true;
-        // yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(cooldown);
         emCooldown = false;
     }
 

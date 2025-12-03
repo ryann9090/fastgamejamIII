@@ -16,7 +16,7 @@ public class persegue_mobs : MonoBehaviour
         Destroy(gameObject, lifeTime);
         FindClosestTarget();
 
-        PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+        PlayerHealth playerHealth = Object.FindFirstObjectByType<PlayerHealth>();
         if (playerHealth != null)
         {
             damage = playerHealth.damage;
@@ -48,9 +48,17 @@ public class persegue_mobs : MonoBehaviour
             MobHealth hp = other.GetComponent<MobHealth>();
             if (hp != null)
             {
-                hp.TakeDamage(damage, attacker); // ✅ agora passa o Player como atacante
-                 habilidadeBase.mobHealth = hp; 
-                habilidadeBase.ExecutarEfeito();
+                hp.TakeDamage(damage, attacker);
+
+                
+                if (hp.baseHealth <= 0)
+                {
+                    Vampirismo vamp = attacker.GetComponent<Vampirismo>();
+                    if (vamp != null)
+                    {
+                        vamp.RoubarVida(hp);
+                    }
+                }
             }
             Destroy(gameObject);
         }

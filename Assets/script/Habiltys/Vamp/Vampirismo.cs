@@ -11,7 +11,7 @@ public class Vampirismo : HabilidadeBase
     public void RoubarVida(MobHealth mob)
     {
         if (!EstaAtiva()) return;
-
+        if (mob == null) return;
         int roubo = (int)(mob.baseHealth * 0.1f);
         PlayerHealth health = GetComponent<PlayerHealth>();
         if (health != null)
