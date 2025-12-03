@@ -1722,6 +1722,7 @@ GameObject:
   - component: {fileID: 7875359534534270848}
   - component: {fileID: 7875359534534270849}
   - component: {fileID: 7875359534534270850}
+  - component: {fileID: 7875359534534270851}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1843,8 +1844,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InvocarCompanheiro
   buffDuration: 15
   cooldown: 25
-  mobHealth: {fileID: 0}
   companheiroPrefab: {fileID: 5031417503649080146, guid: 028be573783880f4aba39d47690852cb, type: 3}
+--- !u!114 &7875359534534270851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6937164469231729064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9263e6a0a251af94181139195dd994ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vampirismo
+  buffDuration: 15
+  cooldown: 15
 --- !u!4 &8096932737264286823
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7561864953256684341}
   - component: {fileID: 6367864312028570134}
   - component: {fileID: 1867226680697042510}
-  - component: {fileID: 5439222677564838495}
   m_Layer: 0
   m_Name: projeteis
   m_TagString: 'project]'
@@ -173,19 +172,4 @@ MonoBehaviour:
   rotateSpeed: 2000
   lifeTime: 2
   attacker: {fileID: 0}
-  habilidadeBase: {fileID: 5439222677564838495}
---- !u!114 &5439222677564838495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125067955711001110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9263e6a0a251af94181139195dd994ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Vampirismo
-  buffDuration: 15
-  cooldown: 0
-  mobHealth: {fileID: 0}
+  habilidadeBase: {fileID: 0}

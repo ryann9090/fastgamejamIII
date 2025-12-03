@@ -206,9 +206,10 @@ MonoBehaviour:
   baseHealth: 100
   baseDamage: 20
   xpPrefab: {fileID: 8624676590780695384, guid: dec33da30e33a1d4ba15067b3bb2e828, type: 3}
+  maxHealth: 100
   GoldItemPrefab: {fileID: 5031417503649080146, guid: 05d52f617185dbd42af7762d98c52492, type: 3}
   habilityItemPrefabs:
-  - {fileID: 5031417503649080146, guid: 2bc3ad580be64224c9c6a44ef903141f, type: 3}
+  - {fileID: 5031417503649080146, guid: 028be573783880f4aba39d47690852cb, type: 3}
   attacker: {fileID: 2401436079485637043, guid: 63e571f64e1b4324986d64f7641c51d3, type: 3}
   spawner: {fileID: 0}
 --- !u!114 &6897151280112540542
