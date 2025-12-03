@@ -50,7 +50,6 @@ public class persegue_mobs : MonoBehaviour
             {
                 hp.TakeDamage(damage, attacker);
 
-                
                 if (hp.baseHealth <= 0)
                 {
                     Vampirismo vamp = attacker.GetComponent<Vampirismo>();

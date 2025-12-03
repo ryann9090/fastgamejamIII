@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class MobHealth : MonoBehaviour
 {
+    //public int GetCurrentHealth();
     public int baseHealth = 100;
     public int baseDamage = 20;
     public GameObject xpPrefab;
-
+    [HideInInspector]public int maxHealth = 100;
     [Header("Itens por Raridade")]
     public GameObject GoldItemPrefab;
     [Header("Itens Especiais")]
@@ -30,10 +31,14 @@ public class MobHealth : MonoBehaviour
 
         currentHealth = baseHealth;
         currentDamage = baseDamage;
+        maxHealth = currentHealth;
     }
 
     public void TakeDamage(int amount, GameObject attacker)
     {
+    {
+        //return currentHealth;
+    }
         currentHealth -= amount;
         if (currentHealth <= 0)
         {

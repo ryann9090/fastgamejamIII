@@ -1791,12 +1791,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunAndProjectile
   gun: {fileID: 1397858593720273443}
   player: {fileID: 6937164469231729064}
-  projectilePrefab: {fileID: 2401436079485637043, guid: 63e571f64e1b4324986d64f7641c51d3, type: 3}
+  projectilePrefab: {fileID: 125067955711001110, guid: 63e571f64e1b4324986d64f7641c51d3, type: 3}
   firePoint: {fileID: 8096932737264286823}
   fireRate: 8
   autoFire: 1
   maxAmmo: 5
   reloadTime: 1
+  VampirismoAtivo: 0
 --- !u!114 &7875359534534270848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,6 +1843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InvocarCompanheiro
   buffDuration: 15
   cooldown: 25
+  mobHealth: {fileID: 0}
   companheiroPrefab: {fileID: 5031417503649080146, guid: 028be573783880f4aba39d47690852cb, type: 3}
 --- !u!4 &8096932737264286823
 Transform:

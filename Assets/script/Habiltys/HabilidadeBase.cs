@@ -8,8 +8,8 @@ public abstract class HabilidadeBase : MonoBehaviour
     public float buffDuration = 15f;
 
     [Tooltip("Tempo de recarga após uso.")]
-    public float cooldown = 0f;
-    public MobHealth mobHealth;
+    public float cooldown = 15f;
+    //public MobHealth mobHealth;
 
     protected bool desbloqueada = false;
     protected bool ativa = false;
