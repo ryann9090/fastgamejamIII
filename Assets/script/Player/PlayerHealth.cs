@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("XP e Nível")]
     public int currentXP = 0;
-    public int currentLevel = 1;
+    public int currentLevel = 1; 
     public int xpToNextLevel = 250;
     public static int mobBuffCount = 0;
 
@@ -19,7 +20,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-       
     public void Heal(int amount)
     {
         currentHealth += amount;
@@ -45,7 +45,6 @@ public class PlayerHealth : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    
     public void AddXP(int amount)
     {
         currentXP += amount;
@@ -58,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
     void LevelUp()
     {
         currentXP -= xpToNextLevel;
-        currentLevel++;
+        currentLevel++;   
 
         damage += 30;
         maxHealth += 50;
@@ -67,18 +66,29 @@ public class PlayerHealth : MonoBehaviour
         xpToNextLevel *= 5;
 
         BuffMobs();
-    
+        BuffPet();
     }
 
-  
     void BuffMobs()
     {
         GameManager.Instance.mobBuffCount++;
 
-        MobHealth[] mobs = FindObjectsOfType<MobHealth>();
+        MobHealth[] mobs = Object.FindObjectsByType<MobHealth>(FindObjectsSortMode.None);
         foreach (MobHealth mob in mobs)
         {
             mob.IncreaseStats(100, 15);
+        }
+    }
+
+    void BuffPet()
+    {
+        Pet pet = Object.FindFirstObjectByType<Pet>();
+        if (pet != null)
+        {
+            pet.maxHealth += 50;   // mesmo buff de vida que o Player
+            pet.BaseHealth = pet.maxHealth;
+            pet.damage += 15;      // buff de dano proporcional
+            Debug.Log("Pet buffado: Vida " + pet.BaseHealth + " | Dano " + pet.damage);
         }
     }
 }

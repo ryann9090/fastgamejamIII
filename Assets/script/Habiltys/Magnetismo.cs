@@ -4,17 +4,17 @@ using System.Collections;
 public class Magnetismo : MonoBehaviour
 {
     [Header("Configurações de Magnetismo")]
-    public float attractionRadius = 5f;   
-    public float attractionSpeed = 5f;    
-    public float buffDuration = 15f;      
-    public float cooldown = 25f;          
+    public float attractionRadius = 5f;
+    public float attractionSpeed = 5f;
+    public float buffDuration = 15f;
+    public float cooldown = 25f;
     private bool magnetismActive = false;
     private bool onCooldown = false;
-    public bool habilidadeDesbloqueada = false; // só ativa se tiver a habilidade
+    public bool habilidadeDesbloqueada = false;
 
     void Update()
     {
-        if (!habilidadeDesbloqueada) return; // sem habilidade não faz nada
+        if (!habilidadeDesbloqueada) return; 
 
         if (magnetismActive)
         {
@@ -24,16 +24,26 @@ public class Magnetismo : MonoBehaviour
                 float distance = Vector2.Distance(item.transform.position, transform.position);
                 if (distance <= attractionRadius)
                 {
-                    item.transform.position = Vector2.MoveTowards(
-                        item.transform.position,
-                        transform.position,
-                        attractionSpeed * Time.deltaTime
-                    );
+                    // ✅ Ajuste: se tiver Rigidbody2D, usa física
+                    Rigidbody2D rb = item.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        Vector2 direction = (transform.position - item.transform.position).normalized;
+                        rb.MovePosition(rb.position + direction * attractionSpeed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        item.transform.position = Vector2.MoveTowards(
+                            item.transform.position,
+                            transform.position,
+                            attractionSpeed * Time.deltaTime
+                        );
+                    }
                 }
             }
         }
 
-        // ativa automaticamente
+        
         if (!magnetismActive && !onCooldown)
         {
             StartCoroutine(MagnetismCycle());

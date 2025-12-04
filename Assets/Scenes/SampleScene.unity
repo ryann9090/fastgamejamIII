@@ -1252,7 +1252,7 @@ MonoBehaviour:
   intervaloDeSpawn: 2
   gizmoColor: {r: 1, g: 0.060914923, b: 0, a: 1}
   gizmoRadius: 14.08
-  mobsPorWave: 100
+  mobsPorWave: 300
 --- !u!4 &1441737733
 Transform:
   m_ObjectHideFlags: 0
@@ -1685,7 +1685,7 @@ MonoBehaviour:
   damage: 15
   moveSpeed: 15
   currentXP: 0
-  currentLevel: 1
+  currentLevel: 3
   xpToNextLevel: 100
 --- !u!4 &4801182870916664459
 Transform:
@@ -1825,10 +1825,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c9f19a9904b7d41b17acfeb8f87dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Magnetismo
-  attractionRadius: 10
-  attractionSpeed: 10
-  buffDuration: 15
-  cooldown: 25
+  attractionRadius: 15
+  attractionSpeed: 20
+  buffDuration: 25
+  cooldown: 15
   habilidadeDesbloqueada: 0
 --- !u!114 &7875359534534270850
 MonoBehaviour:
@@ -1842,9 +1842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af9eb458c2f7d8459ae66d71796f272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InvocarCompanheiro
-  buffDuration: 15
-  cooldown: 25
   companheiroPrefab: {fileID: 5031417503649080146, guid: 028be573783880f4aba39d47690852cb, type: 3}
+  habilidadeDesbloqueada: 1
 --- !u!114 &7875359534534270851
 MonoBehaviour:
   m_ObjectHideFlags: 0

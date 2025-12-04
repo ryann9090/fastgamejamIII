@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class MobHealth : MonoBehaviour
 {
-    //public int GetCurrentHealth();
     public int baseHealth = 100;
     public int baseDamage = 20;
     public GameObject xpPrefab;
-    [HideInInspector]public int maxHealth = 100;
+    [HideInInspector] public int maxHealth = 100;
+
     [Header("Itens por Raridade")]
     public GameObject GoldItemPrefab;
+
     [Header("Itens Especiais")]
     public GameObject[] habilityItemPrefabs;
+
+    
+    public static bool magnetDropped = false;
+
     [Header("dano ao mob")]
     public GameObject attacker;
 
@@ -36,9 +41,6 @@ public class MobHealth : MonoBehaviour
 
     public void TakeDamage(int amount, GameObject attacker)
     {
-    {
-        //return currentHealth;
-    }
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
@@ -49,25 +51,21 @@ public class MobHealth : MonoBehaviour
 
     void Die(GameObject attacker)
     {
-        // Vampirismo
         Vampirismo vamp = attacker.GetComponent<Vampirismo>();
         if (vamp != null)
         {
             vamp.RoubarVida(this);
         }
 
-        // Drop de XP
         int xpAmount = Random.Range(3, 6);
         Drop_XP.Drop(xpAmount, transform.position, xpPrefab, orbValue);
 
-        // Drop de itens
         float chance = Random.Range(0f, 100f);
         if (chance <= 100f)
         {
             DropItem();
         }
 
-        
         if (spawner != null)
         {
             spawner.MobMorto();
@@ -89,8 +87,23 @@ public class MobHealth : MonoBehaviour
         {
             int index = Random.Range(0, habilityItemPrefabs.Length);
             GameObject chosenPrefab = habilityItemPrefabs[index];
-            Instantiate(chosenPrefab, transform.position, Quaternion.identity);
+
+            
+            if (chosenPrefab.name.Contains("Magnet") && magnetDropped)
+            {
+                Debug.Log("Magnetismo já foi dropado, não dropa novamente.");
+                return;
+            }
+
+            
+            GameObject item = Instantiate(chosenPrefab, transform.position, Quaternion.identity);
             Debug.Log(gameObject.name + " dropou Habilidade: " + chosenPrefab.name);
+
+            
+            if (chosenPrefab.name.Contains("Magnet"))
+            {
+                magnetDropped = true;
+            }
         }
     }
 
@@ -107,5 +120,23 @@ public class MobHealth : MonoBehaviour
         Debug.Log(gameObject.name + " buffado: Vida " + currentHealth +
                   " | Dano " + currentDamage +
                   " | Valor dos orbes: " + orbValue);
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Pet pet = other.GetComponent<Pet>();
+        if (pet != null)
+        {
+            pet.TakeDamage(baseDamage);
+            Debug.Log("Mob causou " + baseDamage + " de dano ao Pet!");
+        }
+
+        PlayerHealth player = other.GetComponent<PlayerHealth>();
+        if (player != null)
+        {
+            player.TakeDamage(baseDamage);
+            Debug.Log("Mob causou " + baseDamage + " de dano ao Player!");
+        }
     }
 }

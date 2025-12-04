@@ -7,6 +7,7 @@ TagManager:
   - Mobs
   - 'project]'
   - Items
+  - Pet
   layers:
   - Default
   - TransparentFX
